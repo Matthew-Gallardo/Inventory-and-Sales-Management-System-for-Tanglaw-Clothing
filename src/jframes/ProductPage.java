@@ -57,7 +57,7 @@ public class ProductPage extends javax.swing.JFrame {
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://127.0.0.2:3306/easypcdb?serverTimezone=UTC&useSSL=false ","root","matthewgallardo");
+            con = DriverManager.getConnection("jdbc:mysql://us-cdbr-east-06.cleardb.net/heroku_de2491772d8372e?serverTimezone=UTC&useSSL=false ","bae18a12adcf9d","28316f48");
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select * from product_details");
             
@@ -143,7 +143,7 @@ public class ProductPage extends javax.swing.JFrame {
      {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://127.0.0.2:3306/easypcdb?serverTimezone=UTC&useSSL=false ","root","matthewgallardo");
+            con1 = DriverManager.getConnection("jdbc:mysql://us-cdbr-east-06.cleardb.net/heroku_de2491772d8372e?serverTimezone=UTC&useSSL=false ","bae18a12adcf9d","28316f48");
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select * from category_details");
             txtcat.removeAllItems();
@@ -167,7 +167,7 @@ public class ProductPage extends javax.swing.JFrame {
      {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://127.0.0.2:3306/easypcdb?serverTimezone=UTC&useSSL=false ","root","matthewgallardo");
+            con1 = DriverManager.getConnection("jdbc:mysql://us-cdbr-east-06.cleardb.net/heroku_de2491772d8372e?serverTimezone=UTC&useSSL=false ","bae18a12adcf9d","28316f48");
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select * from category_details ");
             selectcat.removeAllItems();
@@ -189,7 +189,7 @@ public class ProductPage extends javax.swing.JFrame {
      {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://127.0.0.2:3306/easypcdb?serverTimezone=UTC&useSSL=false ","root","matthewgallardo");
+           con1 = DriverManager.getConnection("jdbc:mysql://us-cdbr-east-06.cleardb.net/heroku_de2491772d8372e?serverTimezone=UTC&useSSL=false ","bae18a12adcf9d","28316f48");
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select * from brand_details order by brand");
             txtbrandcombo.removeAllItems();
@@ -218,7 +218,7 @@ public class ProductPage extends javax.swing.JFrame {
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://127.0.0.2:3306/easypcdb?serverTimezone=UTC&useSSL=false ","root","matthewgallardo");
+           con1 = DriverManager.getConnection("jdbc:mysql://us-cdbr-east-06.cleardb.net/heroku_de2491772d8372e?serverTimezone=UTC&useSSL=false ","bae18a12adcf9d","28316f48");
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select category  from product_details");
             
@@ -963,7 +963,7 @@ byte[] pimage=null;
         // TODO add your handling code here:
        try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://127.0.0.2:3306/easypcdb?serverTimezone=UTC&useSSL=false ","root","matthewgallardo");
+            con = DriverManager.getConnection("jdbc:mysql://us-cdbr-east-06.cleardb.net/heroku_de2491772d8372e?serverTimezone=UTC&useSSL=false ","bae18a12adcf9d","28316f48");
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select * from product_details where category='"+selectcat.getSelectedItem().toString()+"'");
             model.setRowCount(0);
@@ -1007,7 +1007,7 @@ byte[] pimage=null;
             String value2=txt2.getText();
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                con = DriverManager.getConnection("jdbc:mysql://127.0.0.2:3306/easypcdb?serverTimezone=UTC&useSSL=false ","root","matthewgallardo");
+                con = DriverManager.getConnection("jdbc:mysql://us-cdbr-east-06.cleardb.net/heroku_de2491772d8372e?serverTimezone=UTC&useSSL=false ","bae18a12adcf9d","28316f48");
                 insert=con.prepareStatement("select * from product_details where price between ? and ? order by price");
                 insert.setString(1, value1);
                 insert.setString(2, value2);

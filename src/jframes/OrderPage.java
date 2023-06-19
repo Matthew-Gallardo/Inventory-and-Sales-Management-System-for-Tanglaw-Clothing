@@ -54,7 +54,7 @@ public class OrderPage extends javax.swing.JFrame {
      
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://127.0.0.2:3306/easypcdb?serverTimezone=UTC&useSSL=false ","root","matthewgallardo");
+            con = DriverManager.getConnection("jdbc:mysql://us-cdbr-east-06.cleardb.net/heroku_de2491772d8372e?serverTimezone=UTC&useSSL=false ","bae18a12adcf9d","28316f48");
             
             insert=con.prepareStatement("select * from product_details where idproduct=?");
             insert.setString(1, productid);
@@ -133,7 +133,7 @@ public class OrderPage extends javax.swing.JFrame {
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://127.0.0.2:3306/easypcdb?serverTimezone=UTC&useSSL=false ","root","matthewgallardo");
+            con = DriverManager.getConnection("jdbc:mysql://us-cdbr-east-06.cleardb.net/heroku_de2491772d8372e?serverTimezone=UTC&useSSL=false ","bae18a12adcf9d","28316f48");
             
             String sql = ("Insert into order_details(idcustomer,customer,subtotal,pay,balance,mop,date,shipping_address)values(?,?,?,?,?,?,?,?)");
             insert=con.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
@@ -604,7 +604,7 @@ public class OrderPage extends javax.swing.JFrame {
             String  customerid =txtcustomerid.getText();
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                con = DriverManager.getConnection("jdbc:mysql://127.0.0.2:3306/easypcdb?serverTimezone=UTC&useSSL=false ","root","matthewgallardo");
+                con = DriverManager.getConnection("jdbc:mysql://us-cdbr-east-06.cleardb.net/heroku_de2491772d8372e?serverTimezone=UTC&useSSL=false ","bae18a12adcf9d","28316f48");
                 insert=con.prepareStatement("select * from customer_details where idcustomer=?");
                 insert.setString(1, customerid);
                 rs= insert.executeQuery();
@@ -643,7 +643,7 @@ public class OrderPage extends javax.swing.JFrame {
             String  productid =txtproductid.getText();
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                con = DriverManager.getConnection("jdbc:mysql://127.0.0.2:3306/easypcdb?serverTimezone=UTC&useSSL=false ","root","matthewgallardo");
+                con = DriverManager.getConnection("jdbc:mysql://us-cdbr-east-06.cleardb.net/heroku_de2491772d8372e?serverTimezone=UTC&useSSL=false ","bae18a12adcf9d","28316f48");
                 insert=con.prepareStatement("select * from product_details where idproduct=?");
                 insert.setString(1, productid);
                 rs= insert.executeQuery();
