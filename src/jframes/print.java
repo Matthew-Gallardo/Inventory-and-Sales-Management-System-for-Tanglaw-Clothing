@@ -29,7 +29,7 @@ public class print extends javax.swing.JFrame {
     String lordernum;
        
     
-      public print(String ordernum,String customerid,String sub,String pay,String balance,String address,String mop, TableModel tableModel ) throws PrinterException {
+      public print(String ordernum,String customerid,String sub,String pay,String balance,String mop, TableModel tableModel ) throws PrinterException {
         initComponents();
         
         this.lordernum=ordernum;
@@ -37,43 +37,41 @@ public class print extends javax.swing.JFrame {
         this.lsub=sub;
         this.lpay=pay;
         this.lbalance=balance;
-        this.laddress=address;
         this.lmop=mop;
         
-        txtprint.setText(txtprint.getText()+"*******************************************************\n");
-        txtprint.setText(txtprint.getText()+"*****************EASYPC**SALES**RECEIPT****************\n");
-        txtprint.setText(txtprint.getText()+"*******************************************************\n");
+        txtprint.setText(txtprint.getText()+"*********************************************************************\n");
+        txtprint.setText(txtprint.getText()+"*****************TANGLAW CLOTHING RECEIPT****************\n");
+        txtprint.setText(txtprint.getText()+"*********************************************************************\n");
         txtprint.setText(txtprint.getText()+"\n");
-        txtprint.setText(txtprint.getText()+"Order ID:"+ordernum+"\n");
-        txtprint.setText(txtprint.getText()+"Customer ID:"+customerid+"\n");
+        txtprint.setText(txtprint.getText()+"*********************************************************************\n");
+        txtprint.setText(txtprint.getText()+"Order ID: "+ordernum+"\n");
+        txtprint.setText(txtprint.getText()+"Customer ID: "+customerid+"\n");
+        txtprint.setText(txtprint.getText()+"*********************************************************************\n");
         txtprint.setText(txtprint.getText()+"\n");
         txtprint.setText(txtprint.getText()+"\n");
-        txtprint.setText(txtprint.getText()+"Product" +"\t" + "Brand" + "\t" + "Price" + "\t"+"Total\n");
+        txtprint.setText(txtprint.getText()+"Product" +"\t\t\t" + "Price" + "\t"+"Total\n");
         
         for (int i=0;i<tableModel.getRowCount();i++){
             
              String  product=(String)tableModel.getValueAt(i, 2);
-             String  brand=(String)tableModel.getValueAt(i, 3);
-             String  price=(String)tableModel.getValueAt(i, 4);
-               int total=(int)tableModel.getValueAt(i, 6);
+             String  price=(String)tableModel.getValueAt(i, 3);
+               int total=(int)tableModel.getValueAt(i, 5);
               
-            txtprint.setText(txtprint.getText()+product +"\t" +brand +"\t" +price +"\t" +total+"\n");
+            txtprint.setText(txtprint.getText()+product + "\t" +price +"\t" +total+"\n");
         }
         txtprint.setText(txtprint.getText()+"\n");
         txtprint.setText(txtprint.getText()+"\n");
-        txtprint.setText(txtprint.getText()+"Subtotal:"+sub+"\n");
-        txtprint.setText(txtprint.getText()+"Pay:"+pay+"\n");
-        txtprint.setText(txtprint.getText()+"Balance:"+balance+"\n");
+        txtprint.setText(txtprint.getText()+"Subtotal: "+sub+"\n");
+        txtprint.setText(txtprint.getText()+"Pay: "+pay+"\n");
+        txtprint.setText(txtprint.getText()+"Balance: "+balance+"\n");
         txtprint.setText(txtprint.getText()+"\n");
         
-        txtprint.setText(txtprint.getText()+"Mode of Payment:"+mop+"\n");
-        txtprint.setText(txtprint.getText()+"\n");
-        txtprint.setText(txtprint.getText()+"Shipping Address:"+address+"\n");
+        txtprint.setText(txtprint.getText()+"Mode of Payment: "+mop+"\n");
         txtprint.setText(txtprint.getText()+"\n");
         txtprint.setText(txtprint.getText()+"\n");
-        txtprint.setText(txtprint.getText()+"*******************************************************\n");
+        txtprint.setText(txtprint.getText()+"********************************************************************\n");
         txtprint.setText(txtprint.getText()+"***************THANK**YOU**COME**AGAIN******************\n");
-        txtprint.setText(txtprint.getText()+"********************************************************\n");
+        txtprint.setText(txtprint.getText()+"*********************************************************************\n");
         
         txtprint.print();
     }
