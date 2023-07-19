@@ -53,8 +53,7 @@ public class OrderPage extends javax.swing.JFrame {
       String  productid =txtproductid.getText();
      
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://us-cdbr-east-06.cleardb.net/heroku_de2491772d8372e?serverTimezone=UTC&useSSL=false ","bae18a12adcf9d","28316f48");
+            con = DBConnection.getConnection();
             
             insert=con.prepareStatement("select * from product_details where idproduct=?");
             insert.setString(1, productid);
@@ -80,7 +79,7 @@ public class OrderPage extends javax.swing.JFrame {
                        txtcustomerid.getText(),
                        txtproductid.getText(),
                        txtproductname.getText(),
-                       txtbrand.getText(),
+                       //txtbrand.getText(),
                        txtprice.getText(),
                        txtquantity.getText(),
                        total
@@ -88,7 +87,7 @@ public class OrderPage extends javax.swing.JFrame {
                    
                          int sum=0;
                          for(int i=0;i<tableorder.getRowCount();i++){
-                             sum=sum +Integer.parseInt(tableorder.getValueAt(i, 6).toString());
+                             sum=sum +Integer.parseInt(tableorder.getValueAt(i, 5).toString());
                          }
                          txtsubtotal.setText(Integer.toString(sum));
                    
@@ -96,17 +95,14 @@ public class OrderPage extends javax.swing.JFrame {
                       
                         txtproductid.setText("");
                         txtproductname.setText("");
-                        txtbrand.setText("");
+                        //txtbrand.setText("");
                         txtprice.setText("");
                         txtquantity.setText("");
                         
                         
                         txtproductid.requestFocus();
-          
                }
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -132,9 +128,7 @@ public class OrderPage extends javax.swing.JFrame {
 
         
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://us-cdbr-east-06.cleardb.net/heroku_de2491772d8372e?serverTimezone=UTC&useSSL=false ","bae18a12adcf9d","28316f48");
-            
+            con = DBConnection.getConnection();
             String sql = ("Insert into order_details(idcustomer,customer,subtotal,pay,balance,mop,date,shipping_address)values(?,?,?,?,?,?,?,?)");
             insert=con.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
                     
@@ -161,12 +155,11 @@ public class OrderPage extends javax.swing.JFrame {
             
             int rows = tableorder.getRowCount();
             
-            String query = ("Insert into orderedproducts(idorder,idproduct,product,brand,price,quantity,total)values(?,?,?,?,?,?,?)");
+            String query = ("Insert into orderedproducts(idorder,idproduct,product,price,quantity,total)values(?,?,?,?,?,?)");
             insert=con.prepareStatement(query);
             
            String idproduct="";
             String product="";
-            String brand="";
             String price="";
             String quantity="";
             int total=0;
@@ -174,7 +167,7 @@ public class OrderPage extends javax.swing.JFrame {
             for(int i=0;i<tableorder.getRowCount();i++){
                idproduct=(String)tableorder.getValueAt(i, 1);
                product=(String)tableorder.getValueAt(i, 2);
-               brand=(String)tableorder.getValueAt(i, 3);
+               //brand=(String)tableorder.getValueAt(i, 3);
                price=(String)tableorder.getValueAt(i, 4);
                quantity=(String)tableorder.getValueAt(i, 5);
                total=(int)tableorder.getValueAt(i, 6);
@@ -182,10 +175,10 @@ public class OrderPage extends javax.swing.JFrame {
               insert.setInt(1, lastinsertid);
               insert.setString(2, idproduct);
               insert.setString(3, product); 
-              insert.setString(4, brand);
-              insert.setString(5, price);
-              insert.setString(6, quantity);
-              insert.setInt(7, total); 
+              //insert.setString(4, brand);
+              insert.setString(4, price);
+              insert.setString(5, quantity);
+              insert.setInt(6, total); 
               insert.executeUpdate();
             }
             //update stocks/quantity
@@ -210,11 +203,6 @@ public class OrderPage extends javax.swing.JFrame {
             insert.addBatch();
             JOptionPane.showMessageDialog(this, "Ordered Product Saved");
             
-            
-            
-            
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -256,10 +244,8 @@ public class OrderPage extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         txtproductname = new javax.swing.JTextField();
-        txtbrand = new javax.swing.JTextField();
         txtprice = new javax.swing.JTextField();
         txtquantity = new javax.swing.JTextField();
         txtproductid = new javax.swing.JTextField();
@@ -291,11 +277,10 @@ public class OrderPage extends javax.swing.JFrame {
         txtdatetoday = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         txtordernum = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -312,26 +297,20 @@ public class OrderPage extends javax.swing.JFrame {
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, -1, -1));
 
         jLabel6.setText("Quantity:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 40, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 40, -1, -1));
 
         jLabel13.setText("Product Name:");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 46, -1, 10));
 
-        jLabel15.setText("Brand:");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, -1, -1));
-
         jLabel17.setText("Price:");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 40, -1, -1));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, -1, -1));
 
         txtproductname.setEditable(false);
         jPanel1.add(txtproductname, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 110, -1));
 
-        txtbrand.setEditable(false);
-        jPanel1.add(txtbrand, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, 120, -1));
-
         txtprice.setEditable(false);
-        jPanel1.add(txtprice, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 70, 120, -1));
-        jPanel1.add(txtquantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 70, 50, -1));
+        jPanel1.add(txtprice, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, 120, -1));
+        jPanel1.add(txtquantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 70, 50, -1));
 
         txtproductid.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -343,7 +322,7 @@ public class OrderPage extends javax.swing.JFrame {
         jPanel4.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 1030, 140));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Customer Details"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Staff Details"));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cusdisplay.setBackground(new java.awt.Color(255, 255, 255));
@@ -404,14 +383,14 @@ public class OrderPage extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Customer ID", "Product ID", "Product Name", "Brand", "Price", "Quantity", "Total"
+                "Customer ID", "Product ID", "Product Name", "Price", "Quantity", "Total"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -507,34 +486,32 @@ public class OrderPage extends javax.swing.JFrame {
         txtordernum.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jPanel4.add(txtordernum, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 600, 110, 20));
 
-        jPanel3.setBackground(new java.awt.Color(78, 148, 79));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel8.setBackground(new java.awt.Color(128, 0, 0));
+        jPanel8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-close-24.png"))); // NOI18N
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-close-24.png"))); // NOI18N
+        jLabel21.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                jLabel21MouseClicked(evt);
             }
         });
-        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1244, 24, -1, 44));
+        jPanel8.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 30, 30, 20));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DB ICONS/icons8-back-40 (1).png"))); // NOI18N
+        jLabel22.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel22.setText("Polytechnic University of the Philippines ");
+        jPanel8.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, 530, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Tanglaw Assets/image 1.png"))); // NOI18N
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
             }
         });
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 24, -1, 44));
+        jPanel8.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/easypclogo-removebg-preview.png"))); // NOI18N
-        jPanel3.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, 210, 60));
-
-        jLabel7.setFont(new java.awt.Font("Verdana", 1, 40)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(233, 239, 192));
-        jLabel7.setText("POINT OF SALES");
-        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, 390, -1));
-
-        jPanel4.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1300, 100));
+        jPanel4.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1330, 80));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -568,7 +545,7 @@ public class OrderPage extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-         if(tableorder.getSelectedRow() != -1) {
+        if(tableorder.getSelectedRow() != -1) {
         model.removeRow(tableorder.getSelectedRow());
          }
        int sum=0;
@@ -603,8 +580,7 @@ public class OrderPage extends javax.swing.JFrame {
         if (evt.getKeyCode()== KeyEvent.VK_ENTER){
             String  customerid =txtcustomerid.getText();
             try {
-                Class.forName("com.mysql.jdbc.Driver");
-                con = DriverManager.getConnection("jdbc:mysql://us-cdbr-east-06.cleardb.net/heroku_de2491772d8372e?serverTimezone=UTC&useSSL=false ","bae18a12adcf9d","28316f48");
+                con = DBConnection.getConnection();
                 insert=con.prepareStatement("select * from customer_details where idcustomer=?");
                 insert.setString(1, customerid);
                 rs= insert.executeQuery();
@@ -627,9 +603,6 @@ public class OrderPage extends javax.swing.JFrame {
                     txtshippingaddress.setText(address.trim());
                    
                 }
-            
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
                 Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -642,8 +615,7 @@ public class OrderPage extends javax.swing.JFrame {
          if (evt.getKeyCode()== KeyEvent.VK_ENTER){
             String  productid =txtproductid.getText();
             try {
-                Class.forName("com.mysql.jdbc.Driver");
-                con = DriverManager.getConnection("jdbc:mysql://us-cdbr-east-06.cleardb.net/heroku_de2491772d8372e?serverTimezone=UTC&useSSL=false ","bae18a12adcf9d","28316f48");
+                con = DBConnection.getConnection();
                 insert=con.prepareStatement("select * from product_details where idproduct=?");
                 insert.setString(1, productid);
                 rs= insert.executeQuery();
@@ -651,26 +623,23 @@ public class OrderPage extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Product ID not found");
                 } else{
                     String product =rs.getString("product");
-                    String brand =rs.getString("brand");
+                    //String brand =rs.getString("brand");
                     String price =rs.getString("price");
                     
-                    byte[] imagedata =rs.getBytes("imageFile");
+                    /*byte[] imagedata =rs.getBytes("imageFile");
                     ImageIcon format1 = new ImageIcon(imagedata);
                     Image mm1 = format1.getImage();
                     Image img3 = mm1.getScaledInstance(productdisplay.getWidth(),productdisplay.getHeight(),Image.SCALE_SMOOTH);
                     ImageIcon image1 = new ImageIcon(img3);
-                    productdisplay.setIcon(image1);
+                    productdisplay.setIcon(image1);*/
                   
 
                      
                     txtproductname.setText(product.trim());
-                    txtbrand.setText(brand.trim());
+                    //txtbrand.setText(brand.trim());
                     txtprice.setText(price.trim());
                     
                 }
-            
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
                 Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -686,17 +655,18 @@ public class OrderPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtpayActionPerformed
 
+    private void jLabel21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel21MouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jLabel21MouseClicked
+
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
         // TODO add your handling code here:
         HomePage home = new HomePage();
         home.setVisible(true);
         dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
-
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -741,35 +711,32 @@ public class OrderPage extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel productdisplay;
     private javax.swing.JTable tableorder;
     private javax.swing.JTextField txtbalance;
-    private javax.swing.JTextField txtbrand;
     private javax.swing.JTextField txtcustomerid;
     private javax.swing.JTextField txtcustomername;
     private javax.swing.JLabel txtdatetoday;

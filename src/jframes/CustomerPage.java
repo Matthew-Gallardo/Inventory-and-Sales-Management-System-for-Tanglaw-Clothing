@@ -92,9 +92,12 @@ public class CustomerPage extends javax.swing.JFrame {
     private void initComponents() {
 
         genderbtngrp = new javax.swing.ButtonGroup();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablecustomer = new javax.swing.JTable();
+        jLabel6 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         txtname = new javax.swing.JTextField();
@@ -122,44 +125,72 @@ public class CustomerPage extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablecustomer = new javax.swing.JTable();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(78, 148, 79));
+        jPanel3.setBackground(new java.awt.Color(143, 88, 85));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tablecustomer.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 204, 0)));
+        tablecustomer.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Customer ID", "Customer Name", "Email Address", "Gender", "Birhday", "Shipping Address"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablecustomer.setGridColor(new java.awt.Color(102, 204, 0));
+        tablecustomer.setSelectionBackground(new java.awt.Color(128, 0, 0));
+        tablecustomer.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        tablecustomer.setShowGrid(false);
+        tablecustomer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablecustomerMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablecustomer);
+
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 780, 360));
+
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setFont(new java.awt.Font("Verdana", 1, 30)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Customer Details");
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, 380, 60));
+
+        jPanel1.setBackground(new java.awt.Color(128, 0, 0));
         jPanel1.setPreferredSize(new java.awt.Dimension(1300, 300));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(78, 148, 79));
+        jPanel2.setBackground(new java.awt.Color(128, 0, 0));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 90, 60));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(233, 239, 192));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DB ICONS/icons8-back-40 (1).png"))); // NOI18N
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
-            }
-        });
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 60));
-
-        jLabel3.setBackground(new java.awt.Color(233, 239, 192));
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 25)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Manage Customers");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, -20, 280, 120));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 280, 120));
 
-        jPanel5.setBackground(new java.awt.Color(78, 148, 79));
+        jPanel5.setBackground(new java.awt.Color(128, 0, 0));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Customer", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(233, 239, 192))); // NOI18N
         jPanel5.setForeground(new java.awt.Color(255, 255, 255));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -172,10 +203,12 @@ public class CustomerPage extends javax.swing.JFrame {
         jPanel5.add(txtname, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 250, 30));
 
         jLabel27.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
         jLabel27.setText("Customer Name:");
-        jPanel5.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 140, 30));
+        jPanel5.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 150, 30));
 
         jLabel28.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(255, 255, 255));
         jLabel28.setText("Shipping Address:");
         jPanel5.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 220, 30));
 
@@ -211,14 +244,16 @@ public class CustomerPage extends javax.swing.JFrame {
         jPanel5.add(txtemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, 250, 30));
 
         jLabel29.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(255, 255, 255));
         jLabel29.setText("Email Address:");
         jPanel5.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 140, 30));
 
         birthdate.setDateFormatString("yyyy-MM-dd");
         jPanel5.add(birthdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 432, 180, 30));
 
-        jRadioButton1.setBackground(new java.awt.Color(78, 148, 79));
+        jRadioButton1.setBackground(new java.awt.Color(128, 0, 0));
         genderbtngrp.add(jRadioButton1);
+        jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton1.setText("Others");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -228,11 +263,13 @@ public class CustomerPage extends javax.swing.JFrame {
         jPanel5.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, -1, -1));
 
         jLabel30.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(255, 255, 255));
         jLabel30.setText("Gender:");
         jPanel5.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 140, 30));
 
-        jRadioButton2.setBackground(new java.awt.Color(78, 148, 79));
+        jRadioButton2.setBackground(new java.awt.Color(128, 0, 0));
         genderbtngrp.add(jRadioButton2);
+        jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton2.setText("Male");
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -241,8 +278,9 @@ public class CustomerPage extends javax.swing.JFrame {
         });
         jPanel5.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, -1, -1));
 
-        jRadioButton3.setBackground(new java.awt.Color(78, 148, 79));
+        jRadioButton3.setBackground(new java.awt.Color(128, 0, 0));
         genderbtngrp.add(jRadioButton3);
+        jRadioButton3.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton3.setText("Female");
         jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -258,6 +296,7 @@ public class CustomerPage extends javax.swing.JFrame {
         jPanel5.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 500, 250, -1));
 
         jLabel31.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(255, 255, 255));
         jLabel31.setText("Date of Birth:");
         jPanel5.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 140, 30));
 
@@ -272,6 +311,7 @@ public class CustomerPage extends javax.swing.JFrame {
         });
         jPanel5.add(btnattach, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 120, -1));
 
+        imagepath.setForeground(new java.awt.Color(255, 255, 255));
         imagepath.setText("Path:");
         jPanel5.add(imagepath, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 170, -1));
 
@@ -293,132 +333,34 @@ public class CustomerPage extends javax.swing.JFrame {
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DB ICONS/icons8-calendar-13-30.png"))); // NOI18N
         jPanel5.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 30, 30));
 
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 390, 670));
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 390, 660));
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 0, 450, 770));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel2.setText("X");
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Tanglaw Assets/image 1.png"))); // NOI18N
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
             }
         });
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 10, 30, 50));
-
-        tablecustomer.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 204, 0)));
-        tablecustomer.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Customer ID", "Customer Name", "Email Address", "Gender", "Birhday", "Shipping Address"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tablecustomer.setGridColor(new java.awt.Color(102, 204, 0));
-        tablecustomer.setSelectionBackground(new java.awt.Color(0, 255, 0));
-        tablecustomer.setSelectionForeground(new java.awt.Color(0, 0, 0));
-        tablecustomer.setShowGrid(false);
-        tablecustomer.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablecustomerMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tablecustomer);
-
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 780, 360));
-
-        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-close-30.png"))); // NOI18N
-        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel5MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jLabel4))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(48, Short.MAX_VALUE))
-        );
-
-        jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 10, 80, -1));
-
-        jLabel6.setFont(new java.awt.Font("Verdana", 1, 30)); // NOI18N
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-popup-70.png"))); // NOI18N
-        jLabel6.setText("Customer Details");
-        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 380, 60));
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 764, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        setSize(new java.awt.Dimension(1300, 788));
+        setSize(new java.awt.Dimension(1300, 764));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
  
    
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        // TODO add your handling code here:
-        HomePage home = new HomePage();
-        home.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jLabel1MouseClicked
-
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_jLabel2MouseClicked
-
     private void txtnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnameActionPerformed
@@ -467,11 +409,6 @@ public class CustomerPage extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
@@ -607,6 +544,14 @@ byte[] pimage=null;
         }
     }//GEN-LAST:event_btnattachActionPerformed
 
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        HomePage home = new HomePage();
+        home.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel2MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -652,7 +597,6 @@ byte[] pimage=null;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -663,8 +607,6 @@ byte[] pimage=null;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -673,7 +615,6 @@ byte[] pimage=null;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;

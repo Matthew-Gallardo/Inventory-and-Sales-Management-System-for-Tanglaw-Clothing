@@ -17,7 +17,7 @@ public class DBConnection {
    
     try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-             con = DriverManager.getConnection("jdbc:mysql://us-cdbr-east-06.cleardb.net/heroku_de2491772d8372e?serverTimezone=UTC&useSSL=false ","bae18a12adcf9d","28316f48");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tanglaw?allowPublicKeyRetrieval=true&serverTimezone=UTC&useSSL=false", "root", "12345678");
         } catch (Exception e) {
             e.printStackTrace();
         }

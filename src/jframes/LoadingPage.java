@@ -33,12 +33,11 @@ public class LoadingPage extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         ProgressBar = new javax.swing.JProgressBar();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -46,49 +45,39 @@ public class LoadingPage extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(0, 233, 0));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Tanglaw Assets/Zasa 2.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 140, -1));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 510, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 50));
-
-        jLabel2.setFont(new java.awt.Font("Verdana", 3, 16)); // NOI18N
-        jLabel2.setText("Database Management System");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 320, -1));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/easypclogo-removebg-preview.png"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 230, 50));
-
-        ProgressBar.setBackground(new java.awt.Color(0, 204, 0));
-        ProgressBar.setForeground(new java.awt.Color(0, 204, 0));
+        ProgressBar.setBackground(new java.awt.Color(143, 83, 85));
+        ProgressBar.setForeground(new java.awt.Color(143, 83, 85));
         ProgressBar.setBorderPainted(false);
-        jPanel1.add(ProgressBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 510, 20));
+        jPanel1.add(ProgressBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 480, 20));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(153, 0, 0));
         jLabel4.setText("Loading...");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 90, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DB ICONS/icons8-combo-chart.gif"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 250, 200));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Tanglaw Assets/loadingpic.png"))); // NOI18N
+        jLabel1.setMaximumSize(new java.awt.Dimension(300, 500));
+        jLabel1.setMinimumSize(new java.awt.Dimension(300, 500));
+        jLabel1.setPreferredSize(new java.awt.Dimension(300, 500));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 480, 270));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Tanglaw Assets/LOGO-loading.png"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -123,26 +112,27 @@ public class LoadingPage extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-          LoadingPage loading = new LoadingPage();
+        LoadingPage loading = new LoadingPage();
         loading.setVisible(true);
         
         
-      UIManager.put("ProgressBar.selectionBackground",Color.green);
-    UIManager.put("ProgressBar.selectionForeground",Color.green);
+        UIManager.put("ProgressBar.selectionBackground",Color.green);
+        UIManager.put("ProgressBar.selectionForeground",Color.green);
         
         
-        SignUp signup=new SignUp();
+        WelcomePage welcome=new WelcomePage();
         try {
             for(int i=0;i<=100;i++){
-                Thread.sleep(10);
+                Thread.sleep(17);
                 loading.ProgressBar.setValue(i);
                         }
         } catch (Exception e) {
         }
             
             loading.setVisible(false);
-            signup.setVisible(true);
+            welcome.setVisible(true);
             loading.dispose();
+           
     }
 
    
@@ -153,6 +143,5 @@ public class LoadingPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }
