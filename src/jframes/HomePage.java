@@ -40,7 +40,7 @@ public class HomePage extends javax.swing.JFrame {
      DefaultTableModel model;
      
      
-     public void setDataToCard(){
+    public void setDataToCard(){
          Statement st=null;
          ResultSet rs=null;
          try {
@@ -70,24 +70,21 @@ public class HomePage extends javax.swing.JFrame {
       public void setProductDetailsToTable(){
         
         try {
-            Class.forName("com.mysql.jdbc.Driver");
             con = DBConnection.getConnection();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select * from orderedproducts");
+            ResultSet rs = st.executeQuery("SELECT idproduct, product, SUM(price) AS total_price " +
+                                      "FROM orderedproducts GROUP BY idproduct, product " +
+                                      "ORDER BY total_price DESC LIMIT 3");
             
             while(rs.next()){
                 String idproduct = rs.getString("idproduct");
                 String product = rs.getString("product");
                 
-                String price= rs.getString("price");
-                String quantity = rs.getString("quantity");
-               
+                String price= rs.getString("total_price");
+ 
                 
-               
-                
-                
-                Object[] obj = {idproduct,product,price,quantity};
-                model =(DefaultTableModel) homeprod.getModel();
+                Object[] obj = {idproduct,product,price};
+                model =(DefaultTableModel) homeprod1.getModel();
                 model.addRow(obj);
             }
         } catch (Exception e) {
@@ -99,8 +96,7 @@ public class HomePage extends javax.swing.JFrame {
     public void setOutofStockToTable(){
         
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tanglaw?serverTimezone=UTC&useSSL=false", "root", "12345678");
+            con = DBConnection.getConnection();
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select * from product_details where quantity <= 3");
             
@@ -118,6 +114,26 @@ public class HomePage extends javax.swing.JFrame {
             e.printStackTrace();
         }
         
+    }
+    
+    public void setProductNumToTable()
+    {
+        try {
+            con = DBConnection.getConnection();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("SELECT category, COUNT(*) AS product_count FROM  product_details GROUP BY category");
+            
+            while(rs.next()){
+                String category = rs.getString("category");
+                int productQuantity = rs.getInt("product_count");
+                
+                Object[] obj = {category,productQuantity};
+                model =(DefaultTableModel) productNumPerCat.getModel();
+                model.addRow(obj);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
     public void showPieChart(){
